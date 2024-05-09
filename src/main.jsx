@@ -5,11 +5,14 @@ import "./index.css";
 
 // product provide
 import ProductProvider from "./contexts/ProductContext.jsx";
+import SidebarProvider from "./contexts/SidebarContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <ProductProvider>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </ProductProvider>
+  <SidebarProvider>
+    <ProductProvider>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </ProductProvider>
+  </SidebarProvider>
 );

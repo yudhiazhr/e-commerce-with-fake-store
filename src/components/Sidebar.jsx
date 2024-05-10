@@ -4,10 +4,11 @@ import { IoMdArrowForward } from "react-icons/io";
 import { CartContext } from "../contexts/CartContext";
 import CartItem from "./CartItem";
 import { FiTrash2 } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const { isOpen, handleClose } = useContext(SidebarContext);
-  const { cart, clearCart , totalPrice, itemAmount} = useContext(CartContext);
+  const { cart, clearCart, totalPrice, itemAmount } = useContext(CartContext);
 
   return (
     <>
@@ -37,15 +38,24 @@ const Sidebar = () => {
           <div className="py-4 gap-y-3 mt-4 flex w-full justify-between items-center">
             {/* total */}
             <div className="uppercast font-semibold">
-              <span className="mr-2">Total:</span>${parseFloat(totalPrice).toFixed(2)}
+              <span className="mr-2">Total:</span>$
+              {parseFloat(totalPrice).toFixed(2)}
             </div>
             {/* clear cart icon */}
-            <div onClick={clearCart} className="cursor-pointer py-4 bg-red-500 text-white w-12 h-12 flex justify-center items-center text-xl">
+            <div
+              onClick={clearCart}
+              className="cursor-pointer py-4 bg-red-500 text-white w-12 h-12 flex justify-center items-center text-xl"
+            >
               <FiTrash2 />
             </div>
           </div>
+          <Link
+            to={"/"}
+            className=" w-full flex items-center justify-center p-4 bg-primary text-white font-semibold hover:bg-gray-700 transition duration-300"
+          >
+            Checkout
+          </Link>
         </div>
-        <button className="border w-full p-4 bg-black text-white font-semibold hover:bg-gray-950">Pay</button>
       </div>
     </>
   );

@@ -26,7 +26,7 @@ const Header = () => {
             <div className="px-4">
               <a
                 href="/"
-                className="font-bold text-xl text-primary block py-6 lg:text-2xl"
+                className="italic font-bold text-xl text-primary block py-6 lg:text-2xl"
               >
                 FakeFakeFake
               </a>

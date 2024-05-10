@@ -4,6 +4,7 @@ import { AiOutlineShopping } from "react-icons/ai";
 import { CartContext } from "../contexts/CartContext";
 import { useState } from "react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   //header state
@@ -24,12 +25,11 @@ const Header = () => {
         <div className="mx:0 sm:mx-12 lg:mx-32">
           <div className="flex items-center justify-between relative">
             <div className="px-4">
-              <a
-                href="/"
+              <Link to={'/'}
                 className="italic font-bold text-xl text-primary block py-6 lg:text-2xl"
               >
                 FakeFakeFake
-              </a>
+              </Link>
             </div>
             <div className="flex items-center px-4">
               <nav>

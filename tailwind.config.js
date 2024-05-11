@@ -7,6 +7,7 @@ export default {
   theme:  {
     fontFamily: {
       primary: 'Poppins',
+      secondary: 'Antar'
     },
     container: {
       padding: {

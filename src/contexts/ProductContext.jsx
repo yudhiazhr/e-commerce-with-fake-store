@@ -9,6 +9,7 @@ export const ProductContext = createContext();
 const ProductProvider = ({ children }) => {
   // products state
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLaoding] = useState(true)
 
   // fetch products
   useEffect(() => {
@@ -20,8 +21,16 @@ const ProductProvider = ({ children }) => {
     fetchProducts();
   }, []);
 
+  // waiting connection
+  useEffect (() => {
+    const timer = setTimeout (() => {
+      setIsLaoding(false)
+    }, 500)
+    return () => clearTimeout(timer)
+  },[])
+
   return (
-    <ProductContext.Provider value={{ products }}>
+    <ProductContext.Provider value={{ products, isLoading }}>
       {children}
     </ProductContext.Provider>
   );

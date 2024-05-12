@@ -2,30 +2,37 @@ import { useContext } from "react";
 import { ProductContext } from "../contexts/ProductContext";
 import { CartContext } from "../contexts/CartContext";
 import { useParams } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const ProductDetails = () => {
 
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   // get the product id from the url
-  const {id} = useParams()
-  const {products} = useContext(ProductContext)
-  const {addToCart} = useContext(CartContext)
+  const { id } = useParams();
+  const { products } = useContext(ProductContext);
+  const { addToCart } = useContext(CartContext);
 
   // get the single product base on id
-  const product = products.find(item => {
-    return item.id === parseInt(id)
-  })
-  
+  const product = products.find((item) => {
+    return item.id === parseInt(id);
+  });
+
   // if product is not found
-  if(!product) {
+  if (!product) {
     return (
       <section className="h-screen flex justify-center items-center">
         Loading...
       </section>
-    )
+    );
   }
 
   //destructure product
-  const {title, price, description, image} = product
+  const { title, price, description, image } = product;
 
   return (
     <>
@@ -33,14 +40,21 @@ const ProductDetails = () => {
         <div className="container mx-auto border-[3px] rounded-sm border-transparent shadow-xl p-16 ">
           <div className="flex flex-col lg:flex-row items-center">
             {/* image */}
-            <div className="flex flex-1 justify-center items-center mb-8 lg:mb-0">
+            <div className="flex flex-1 justify-center items-center mb-8 lg:mb-0" data-aos="fade-up">
               <img src={image} alt="" className="max-w-[200px] lg:max-w-sm" />
             </div>
-            <div className="flex-1 text-center lg:text-left">
-              <h1 className="text-[26px] font-medium mb-2 max-w-[450px] mx-auto lg:mx-0">{title}</h1>
-              <div className="text-xl text-red-500 font-medium mb-6">$ {price}</div>
+            <div className="flex-1 text-center lg:text-left" data-aos="fade-left">
+              <h1 className="text-[26px] font-medium mb-2 max-w-[450px] mx-auto lg:mx-0">
+                {title}
+              </h1>
+              <div className="text-xl text-red-500 font-medium mb-6">
+                $ {price}
+              </div>
               <p className="mb-8">{description}</p>
-              <button onClick={() => addToCart(product, product.id)} className="py-4 px-8 bg-primary text-white hover:bg-gray-700 transition duration-300">
+              <button
+                onClick={() => addToCart(product, product.id)}
+                className="py-4 px-8 bg-primary text-white hover:bg-gray-700 transition duration-300"
+              >
                 Add to cart
               </button>
             </div>
@@ -48,7 +62,7 @@ const ProductDetails = () => {
         </div>
       </section>
     </>
-  )
+  );
 };
 
 export default ProductDetails;

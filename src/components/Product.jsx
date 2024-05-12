@@ -3,15 +3,22 @@ import { AiOutlinePlus, AiOutlineHeart } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { CartContext } from "../contexts/CartContext";
 import { useContext } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 const Product = ({ product }) => {
+
+  useEffect (() => {
+    AOS.init()
+   },[])
 
   const {addToCart} = useContext(CartContext)
 
   const { id, image, category, title, price } = product;
 
   return (
-    <div>
+    <div data-aos="fade-up">
       <div className="border border-[#e4e4e4] h-[300px] mb-4 relative overflow-hidden group transition">
         {/* image */}
         <div className="w-full h-full flex justify-center items-center">
